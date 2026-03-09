@@ -58,9 +58,17 @@ export interface HighlightItem {
     note: string;
 }
 
+export interface HotelInfo {
+    name: string;
+    links?: VisitLink[];
+}
+
 export interface ItineraryData {
     tripName: string;
     hotel: string;
+    party?: string;
+    dateRangeLabel?: string;
+    hotelInfo?: HotelInfo;
     dates: string[];
     highlights: HighlightItem[];
     days: ItineraryDay[];

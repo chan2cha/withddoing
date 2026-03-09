@@ -7,8 +7,11 @@ import itineraryData from "@/data/itinerary.json";
 import type { ItineraryData, VisitLink } from "@/types/itinerary";
 
 const itinerary = itineraryData as ItineraryData;
-function makeLabel(date: string, dow: string) {
-  return `${date.slice(5).replace("-", "/")}(${dow})`;
+function makeDateParts(date: string, dow: string) {
+  return {
+    mmdd: date.slice(5).replace("-", "/"),
+    dow,
+  };
 }
 
 function getInitialSelectedDate() {
@@ -43,26 +46,28 @@ export default function HomePage() {
 
   return (
       <LayoutShell>
+
+        <section className="dateTabsBar">
+          <div className="dateTabsGrid">
+            {itinerary.days.map((d) => {
+              const parts = makeDateParts(d.date, d.dow);
+
+              return (
+                  <button
+                      key={d.date}
+                      className={`tab dateTab ${selected === d.date ? "active" : ""}`}
+                      onClick={() => setSelected(d.date)}
+                  >
+                    <span className="dateTabMain">{parts.mmdd}</span>
+                    <span className="dateTabSub">{parts.dow}</span>
+                  </button>
+              );
+            })}
+          </div>
+        </section>
         <div className="grid">
           <section className="card">
             <h2 className="h2">📅 오늘 일정</h2>
-
-            <div className="pillrow">
-              {itinerary.days.map((d) => (
-                  <button
-                      key={d.date}
-                      className={`tab ${selected === d.date ? "active" : ""}`}
-                      onClick={() => setSelected(d.date)}
-                  >
-                    {makeLabel(d.date, d.dow)}
-                  </button>
-              ))}
-            </div>
-
-            <div className="pillrow" style={{ marginTop: 10 }}>
-              <span className="pill"><b>숙소</b> {itinerary.hotel}</span>
-              <span className="pill"><b>인원</b> 5명(임산부 포함)</span>
-            </div>
 
             {day && (
                 <div className="sectionGap">

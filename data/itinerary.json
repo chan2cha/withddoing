@@ -2,11 +2,20 @@
   "tripName": "위드또잉",
   "hotel": "Sheraton Phu Quoc Long Beach Resort",
   "dates": ["2026-04-02", "2026-04-03", "2026-04-04", "2026-04-05", "2026-04-06"],
+  "dateRangeLabel": "2026.04.02 - 2026.04.06",
   "highlights": [
     { "time": "09:30", "label": "사파리 주 트램", "note": "Grab 1순위 / 시간 엄수" },
     { "time": "21:45", "label": "스파더엘 복귀", "note": "샵 차량 샌딩 마감" },
     { "time": "17:45", "label": "귀국 항공", "note": "공항 16:00 이전 도착 권장" }
   ],
+  "hotelInfo": {
+    "name": "Sheraton Phu Quoc Long Beach Resort",
+    "links": [
+      { "label": "지도 보기", "url": "", "kind": "map" },
+      { "label": "유튜브 영상", "url": "", "kind": "youtube" },
+      { "label": "숙소 후기", "url": "", "kind": "blog" }
+    ]
+  },
   "days": [
     {
       "date": "2026-04-02",
