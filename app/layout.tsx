@@ -5,8 +5,8 @@ export const metadata: Metadata = {
     title: "위드또잉",
     description: "푸꾸옥 가족여행 일정/체크리스트",
     icons: {
-        apple: "/public/ddoing.png",
-        icon: "/public/ddoing.png",
+        apple: "/ddoing.png",
+        icon: "/ddoing.png",
     },
 };
 
