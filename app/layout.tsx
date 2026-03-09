@@ -4,6 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
     title: "위드또잉",
     description: "푸꾸옥 가족여행 일정/체크리스트",
+    manifest:"/manifest.json",
     icons: {
         apple: "/ddoing.png",
         icon: "/ddoing.png",
