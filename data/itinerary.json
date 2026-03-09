@@ -1,0 +1,555 @@
+{
+  "tripName": "위드또잉",
+  "hotel": "Sheraton Phu Quoc Long Beach Resort",
+  "dates": ["2026-04-02", "2026-04-03", "2026-04-04", "2026-04-05", "2026-04-06"],
+  "highlights": [
+    { "time": "09:30", "label": "사파리 주 트램", "note": "Grab 1순위 / 시간 엄수" },
+    { "time": "21:45", "label": "스파더엘 복귀", "note": "샵 차량 샌딩 마감" },
+    { "time": "17:45", "label": "귀국 항공", "note": "공항 16:00 이전 도착 권장" }
+  ],
+  "days": [
+    {
+      "date": "2026-04-02",
+      "dow": "목",
+      "title": "도착 + 모닝투어 + 체크인",
+      "items": [
+        {
+          "time": "05:35",
+          "icon": "✈️",
+          "title": "푸꾸옥 도착",
+          "detail": "입국/수하물 40~60분",
+          "transport": "도보 → 픽업/차량",
+          "planB": "입국 지연 시 모닝투어 첫 코스 축소",
+          "visit": {
+            "name": "푸꾸옥 국제공항",
+            "type": "airport",
+            "location": "Phu Quoc International Airport",
+            "duration": "40~60분",
+            "note": "입국 심사/수하물 수령 시간 감안",
+            "highlight": "도착 직후 유심/환전/픽업 확인",
+            "caution": "짐 찾는 시간에 따라 이후 일정 밀릴 수 있음",
+            "links": [
+              { "label": "공항 정보", "url": "", "kind": "review" },
+              { "label": "지도 보기", "url": "", "kind": "map" }
+            ]
+          }
+        },
+        {
+          "time": "07:00",
+          "icon": "🍜",
+          "title": "모닝투어 시작",
+          "detail": "쌀국수 → 카페 → 호국사",
+          "transport": "차량 이동",
+          "planB": "컨디션 안 좋으면 쌀국수+카페까지만 진행",
+          "visit": {
+            "name": "모닝투어 루트",
+            "type": "transport",
+            "location": "공항 근처 → 시내권 이동",
+            "duration": "약 3~4시간",
+            "note": "첫날은 무리하지 않고 핵심만",
+            "highlight": "쌀국수, 카페, 호국사",
+            "caution": "입국 지연/피로 누적 시 코스 축소",
+            "links": [
+              { "label": "모닝투어 후기", "url": "", "kind": "blog" },
+              { "label": "관련 영상", "url": "", "kind": "youtube" }
+            ]
+          }
+        },
+        {
+          "time": "11:00",
+          "icon": "🛒",
+          "title": "킹콩마트",
+          "detail": "장보기/기념품 (45~60분 컷)",
+          "transport": "차량 이동",
+          "planB": "피곤하면 생수/간식/선크림만 빠르게 구매",
+          "visit": {
+            "name": "Kingkong Mart",
+            "type": "shopping",
+            "location": "푸꾸옥 시내 마트",
+            "duration": "45~60분",
+            "note": "첫날 생수/간식/기념품 한 번에 정리",
+            "highlight": "과자, 생수, 간식, 선크림, 기념품",
+            "caution": "오래 머물면 첫날 체력 소모 큼",
+            "links": [
+              { "label": "마트 후기", "url": "", "kind": "blog" },
+              { "label": "유튜브 영상", "url": "", "kind": "youtube" },
+              { "label": "지도 보기", "url": "", "kind": "map" }
+            ]
+          }
+        },
+        {
+          "time": "12:15",
+          "icon": "💆",
+          "title": "크라운스파 60분",
+          "detail": "투어 포함(임산부 gentle)",
+          "transport": "차량 이동",
+          "planB": "입국 피로가 심하면 마사지 시간 축소 또는 스킵",
+          "visit": {
+            "name": "Crown Spa",
+            "type": "spa",
+            "location": "푸꾸옥 시내 스파",
+            "duration": "60분",
+            "note": "첫날 피로 회복용",
+            "highlight": "부드러운 강도 요청",
+            "caution": "임산부는 강한 압 피하기",
+            "links": [
+              { "label": "스파 후기", "url": "", "kind": "blog" },
+              { "label": "지도 보기", "url": "", "kind": "map" }
+            ]
+          }
+        },
+        {
+          "time": "13:20",
+          "icon": "🍚",
+          "title": "껌냐 점심",
+          "detail": "별도 주문, 과식 금지",
+          "transport": "도보 또는 차량 짧은 이동",
+          "planB": "입맛 없으면 죽/국물류 위주로 간단히",
+          "visit": {
+            "name": "껌냐 점심 식당",
+            "type": "restaurant",
+            "location": "시내 식당권",
+            "duration": "40~60분",
+            "note": "첫날은 가볍고 익힌 음식 위주",
+            "recommendedMenu": ["껌냐", "국물류", "볶음밥"],
+            "orderTip": "임산부 음식은 완전히 익힌 메뉴 위주",
+            "links": [
+              { "label": "식당 후기", "url": "", "kind": "blog" },
+              { "label": "지도 보기", "url": "", "kind": "map" }
+            ]
+          }
+        },
+        {
+          "time": "15:00",
+          "icon": "🏨",
+          "title": "체크인 + 낮잠",
+          "detail": "첫날 추가 외출 X",
+          "transport": "차량 이동",
+          "planB": "컨디션 안 좋으면 룸서비스로 저녁 대체",
+          "visit": {
+            "name": "Sheraton Phu Quoc Long Beach Resort",
+            "type": "hotel",
+            "location": "롱비치 리조트 구역",
+            "duration": "체크인 후 휴식",
+            "note": "첫날 체력 회복 우선",
+            "highlight": "체크인, 낮잠, 리조트 휴식",
+            "caution": "첫날 외출 추가하지 않기",
+            "links": [
+              { "label": "리조트 후기", "url": "", "kind": "blog" },
+              { "label": "유튜브 영상", "url": "", "kind": "youtube" },
+              { "label": "지도 보기", "url": "", "kind": "map" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-04-03",
+      "dow": "금",
+      "title": "휴식일 + 비엔하이꾸안 저녁",
+      "items": [
+        {
+          "time": "오전",
+          "icon": "🌿",
+          "title": "리조트 휴식",
+          "detail": "조식 후 수영장/해변 산책 20분",
+          "transport": "도보",
+          "planB": "더우면 실내 휴식 위주",
+          "visit": {
+            "name": "Sheraton Phu Quoc Long Beach Resort",
+            "type": "hotel",
+            "location": "롱비치 리조트 구역",
+            "duration": "오전 자유시간",
+            "note": "무리 없는 휴식일 운영",
+            "highlight": "수영장, 해변 산책, 객실 휴식",
+            "caution": "오전 햇빛 강하면 실내 이동",
+            "links": [
+              { "label": "리조트 후기", "url": "", "kind": "blog" },
+              { "label": "리조트 영상", "url": "", "kind": "youtube" },
+              { "label": "지도 보기", "url": "", "kind": "map" }
+            ]
+          }
+        },
+        {
+          "time": "오후",
+          "icon": "😴",
+          "title": "낮잠 + 컨디션 회복",
+          "detail": "발 붓기 관리(다리 올리기)",
+          "transport": "이동 없음",
+          "planB": "저녁 외출이 무리면 룸서비스/근처 식사로 전환"
+        },
+        {
+          "time": "16:30",
+          "icon": "🚗",
+          "title": "Grab 출발 → Biên Hải Quán",
+          "detail": "SUV/7인승 권장",
+          "transport": "Grab",
+          "planB": "차가 안 잡히면 출발 시간 앞당기거나 근처 식당 대체"
+        },
+        {
+          "time": "17:00",
+          "icon": "🦞",
+          "title": "Biên Hải Quán 저녁",
+          "detail": "임산부는 완전 익힌 메뉴",
+          "transport": "도착 후 도보",
+          "planB": "대기 길면 주문 간단히 하고 체류시간 축소",
+          "visit": {
+            "name": "Biên Hải Quán",
+            "type": "restaurant",
+            "location": "즈엉동/해산물 식당 구역",
+            "duration": "60~90분",
+            "note": "이른 저녁 입장이 비교적 편함",
+            "recommendedMenu": ["구운 새우", "볶음밥", "완전히 익힌 해산물"],
+            "orderTip": "얼음 빼기, 완전 익힌 메뉴 위주, 너무 늦지 않게 식사",
+            "links": [
+              { "label": "블로그 후기", "url": "", "kind": "blog" },
+              { "label": "유튜브 영상", "url": "", "kind": "youtube" },
+              { "label": "지도 보기", "url": "", "kind": "map" }
+            ]
+          }
+        },
+        {
+          "time": "19:00",
+          "icon": "🏨",
+          "title": "리조트 복귀",
+          "detail": "샤워/휴식",
+          "transport": "Grab",
+          "planB": "피곤하면 식사 후 바로 복귀"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-04",
+      "dow": "토",
+      "title": "사파리 + 그랜드월드(빈버스) + Lucky Shrimp",
+      "items": [
+        {
+          "time": "07:00",
+          "icon": "🍳",
+          "title": "조식",
+          "detail": "과식 금지",
+          "transport": "도보",
+          "planB": "늦잠이면 가볍게 먹고 바로 준비"
+        },
+        {
+          "time": "08:50",
+          "icon": "🚗",
+          "title": "로비 집합 + Grab 호출",
+          "detail": "현금 1순위, SUV/7인승",
+          "transport": "Grab",
+          "planB": "호출 지연 시 큰 길가 픽업 포인트로 이동"
+        },
+        {
+          "time": "09:15",
+          "icon": "🦒",
+          "title": "사파리 도착",
+          "detail": "주 트램 탑승장 이동",
+          "transport": "도보 이동",
+          "planB": "입장 지연 시 동선 최소화 후 트램 우선",
+          "visit": {
+            "name": "Vinpearl Safari Phu Quoc",
+            "type": "sightseeing",
+            "location": "북부 관광 구역",
+            "duration": "2~3시간",
+            "note": "입장 후 바로 트램 쪽 이동 추천",
+            "highlight": "사파리 트램, 동물 관람, 오전 핵심 동선",
+            "caution": "더워지기 전에 핵심 구간 우선",
+            "links": [
+              { "label": "사파리 후기", "url": "", "kind": "blog" },
+              { "label": "유튜브 영상", "url": "", "kind": "youtube" },
+              { "label": "지도 보기", "url": "", "kind": "map" }
+            ]
+          }
+        },
+        {
+          "time": "09:30",
+          "icon": "🚋",
+          "title": "주 트램 탑승",
+          "detail": "시간 엄수",
+          "transport": "탑승",
+          "planB": "놓치면 현장 상황에 맞춰 다음 탑승 또는 체류시간 단축"
+        },
+        {
+          "time": "13:00",
+          "icon": "😴",
+          "title": "리조트 낮잠/휴식",
+          "detail": "저녁 외출 대비",
+          "transport": "Grab 또는 복귀 차량",
+          "planB": "사파리 피로가 크면 저녁 그랜드월드 취소 가능"
+        },
+        {
+          "time": "18:30",
+          "icon": "🚌",
+          "title": "VinBus → 그랜드월드",
+          "detail": "배차 간격 변동 가능",
+          "transport": "VinBus",
+          "planB": "버스 대기 길면 Grab 전환"
+        },
+        {
+          "time": "19:05",
+          "icon": "🍤",
+          "title": "Lucky Shrimp 저녁",
+          "detail": "앉아서 40분 컷",
+          "transport": "도보",
+          "planB": "대기 길면 근처 식당으로 변경",
+          "visit": {
+            "name": "Lucky Shrimp",
+            "type": "restaurant",
+            "location": "Grand World 내부 식당 구역",
+            "duration": "40~60분",
+            "note": "저녁 동선 중 짧게 먹기 좋은 편",
+            "recommendedMenu": ["새우요리", "볶음밥", "가벼운 사이드"],
+            "orderTip": "대기 길면 대표 메뉴 위주로 빠르게 주문",
+            "links": [
+              { "label": "식당 후기", "url": "", "kind": "blog" },
+              { "label": "유튜브 영상", "url": "", "kind": "youtube" },
+              { "label": "지도 보기", "url": "", "kind": "map" }
+            ]
+          }
+        },
+        {
+          "time": "19:50",
+          "icon": "🚤",
+          "title": "수상택시/운하 산책",
+          "detail": "줄 길면 산책으로 대체",
+          "transport": "도보 또는 수상택시",
+          "planB": "줄 길면 바로 산책 사진 위주",
+          "visit": {
+            "name": "Grand World 운하 구역",
+            "type": "sightseeing",
+            "location": "Grand World Phu Quoc",
+            "duration": "20~40분",
+            "note": "저녁 산책/사진 포인트",
+            "highlight": "운하, 야경, 수상택시",
+            "caution": "체류시간 길어지면 복귀 늦어질 수 있음",
+            "links": [
+              { "label": "그랜드월드 후기", "url": "", "kind": "blog" },
+              { "label": "야경 영상", "url": "", "kind": "youtube" },
+              { "label": "지도 보기", "url": "", "kind": "map" }
+            ]
+          }
+        },
+        {
+          "time": "21:00",
+          "icon": "🏨",
+          "title": "리조트 복귀",
+          "detail": "일찍 복귀",
+          "transport": "VinBus 또는 Grab",
+          "planB": "피곤하면 저녁 후 바로 복귀"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-05",
+      "dow": "일",
+      "title": "선셋타운(스파더엘) + Kiss of the Sea",
+      "items": [
+        {
+          "time": "15:30",
+          "icon": "🚗",
+          "title": "쉐라톤 픽업(샵 차량)",
+          "detail": "왕복 $60",
+          "transport": "샵 차량",
+          "planB": "픽업 지연 시 샵에 즉시 연락"
+        },
+        {
+          "time": "16:45",
+          "icon": "💆",
+          "title": "스파더엘 90분 마사지",
+          "detail": "30% 할인 적용",
+          "transport": "차량 도착 후 도보",
+          "planB": "컨디션 안 좋으면 60분 또는 강도 약하게 요청",
+          "visit": {
+            "name": "Spa The El",
+            "type": "spa",
+            "location": "Sunset Town 인근",
+            "duration": "90분",
+            "note": "쇼 전 컨디션 조절용",
+            "highlight": "강도 약하게 요청 가능",
+            "caution": "민감 부위 압 강도 사전 요청",
+            "links": [
+              { "label": "스파 후기", "url": "", "kind": "blog" },
+              { "label": "지도 보기", "url": "", "kind": "map" }
+            ]
+          }
+        },
+        {
+          "time": "18:15",
+          "icon": "🍽️",
+          "title": "저녁(선셋타운)",
+          "detail": "과식 금지, 얼음 적게/빼기",
+          "transport": "도보",
+          "planB": "시간 밀리면 간단한 메뉴만 먹고 이동",
+          "visit": {
+            "name": "Sunset Town 저녁 식사",
+            "type": "restaurant",
+            "location": "Sunset Town",
+            "duration": "40~60분",
+            "note": "공연 전 가볍게 먹는 저녁",
+            "recommendedMenu": ["볶음밥", "구이류", "국물 메뉴"],
+            "orderTip": "얼음 빼기, 완전 익힌 음식, 과식 금지",
+            "links": [
+              { "label": "선셋타운 식당 후기", "url": "", "kind": "blog" },
+              { "label": "유튜브 영상", "url": "", "kind": "youtube" },
+              { "label": "지도 보기", "url": "", "kind": "map" }
+            ]
+          }
+        },
+        {
+          "time": "19:05",
+          "icon": "🌉",
+          "title": "키스브리지",
+          "detail": "30분 컷(21:45 복귀 마감 대비)",
+          "transport": "도보",
+          "planB": "줄 길거나 더우면 사진만 빠르게",
+          "visit": {
+            "name": "Kiss Bridge",
+            "type": "sightseeing",
+            "location": "Sunset Town",
+            "duration": "20~30분",
+            "note": "야경/사진 포인트",
+            "highlight": "사진 촬영, 산책",
+            "caution": "체류시간 길어지지 않게 관리",
+            "links": [
+              { "label": "브리지 후기", "url": "", "kind": "blog" },
+              { "label": "야경 영상", "url": "", "kind": "youtube" },
+              { "label": "지도 보기", "url": "", "kind": "map" }
+            ]
+          }
+        },
+        {
+          "time": "20:10",
+          "icon": "🎟️",
+          "title": "공연장 이동/착석",
+          "detail": "20:40 착석 목표",
+          "transport": "도보",
+          "planB": "브리지 체류시간 줄이고 바로 이동"
+        },
+        {
+          "time": "21:00",
+          "icon": "🎭",
+          "title": "Kiss of the Sea",
+          "detail": "쇼 관람",
+          "transport": "착석",
+          "planB": "피곤하면 중간 퇴장도 가능하도록 통로석 선호",
+          "visit": {
+            "name": "Kiss of the Sea",
+            "type": "show",
+            "location": "Sunset Town 공연장",
+            "duration": "약 1시간",
+            "note": "대표 야간 공연",
+            "highlight": "분수, 조명, 쇼 연출",
+            "caution": "쇼 종료 후 복귀 동선 바로 이동",
+            "links": [
+              { "label": "공연 후기", "url": "", "kind": "blog" },
+              { "label": "공연 영상", "url": "", "kind": "youtube" },
+              { "label": "지도 보기", "url": "", "kind": "map" }
+            ]
+          }
+        },
+        {
+          "time": "21:45",
+          "icon": "⏱️",
+          "title": "스파더엘 복귀(필수)",
+          "detail": "마감 준수",
+          "transport": "도보 이동",
+          "planB": "쇼 종료 직후 바로 이동"
+        },
+        {
+          "time": "23:00",
+          "icon": "🏨",
+          "title": "리조트 도착(예상)",
+          "detail": "",
+          "transport": "샵 차량",
+          "planB": "귀가 늦어지면 다음 날 짐 정리 최소화"
+        }
+      ]
+    },
+    {
+      "date": "2026-04-06",
+      "dow": "월",
+      "title": "체크아웃 + 제니스 스파 + 귀국",
+      "items": [
+        {
+          "time": "오전",
+          "icon": "🧳",
+          "title": "조식 + 짐 정리",
+          "detail": "여유 있게",
+          "transport": "도보",
+          "planB": "늦어지면 짐 정리 우선"
+        },
+        {
+          "time": "12:00",
+          "icon": "🏨",
+          "title": "체크아웃",
+          "detail": "짐 보관(리조트/스파)",
+          "transport": "도보",
+          "planB": "체크아웃 지연 없이 먼저 짐 맡기기",
+          "visit": {
+            "name": "Sheraton Phu Quoc Long Beach Resort",
+            "type": "hotel",
+            "location": "롱비치 리조트 구역",
+            "duration": "체크아웃 절차",
+            "note": "짐 보관 후 마지막 일정 진행",
+            "highlight": "체크아웃, 짐 맡기기",
+            "caution": "귀국일은 일정 밀리면 바로 공항 우선",
+            "links": [
+              { "label": "리조트 후기", "url": "", "kind": "blog" },
+              { "label": "지도 보기", "url": "", "kind": "map" }
+            ]
+          }
+        },
+        {
+          "time": "13:45",
+          "icon": "💆",
+          "title": "제니스 스파 60분",
+          "detail": "14:45 종료 목표",
+          "transport": "차량 이동",
+          "planB": "시간 밀리면 마사지 축소 또는 스킵",
+          "visit": {
+            "name": "Zenith Spa",
+            "type": "spa",
+            "location": "공항 이동 전 들르기 좋은 스파",
+            "duration": "60분",
+            "note": "귀국 전 마지막 정리용 일정",
+            "highlight": "가벼운 피로 회복",
+            "caution": "공항 이동 시간 최우선",
+            "links": [
+              { "label": "스파 후기", "url": "", "kind": "blog" },
+              { "label": "지도 보기", "url": "", "kind": "map" }
+            ]
+          }
+        },
+        {
+          "time": "15:00",
+          "icon": "✈️",
+          "title": "공항 이동",
+          "detail": "공항 16:00 이전 도착 권장",
+          "transport": "차량 이동",
+          "planB": "마사지/점심 밀리면 바로 공항 이동",
+          "visit": {
+            "name": "푸꾸옥 국제공항",
+            "type": "airport",
+            "location": "Phu Quoc International Airport",
+            "duration": "출국 전 대기",
+            "note": "체크인/출국 심사 여유 확보",
+            "highlight": "16:00 이전 도착 목표",
+            "caution": "귀국일은 공항 우선",
+            "links": [
+              { "label": "공항 정보", "url": "", "kind": "review" },
+              { "label": "지도 보기", "url": "", "kind": "map" }
+            ]
+          }
+        },
+        {
+          "time": "17:45",
+          "icon": "✈️",
+          "title": "푸꾸옥 출발",
+          "detail": "",
+          "transport": "항공편",
+          "planB": "출국장 대기 중 간식/물 미리 확보"
+        }
+      ]
+    }
+  ]
+}
