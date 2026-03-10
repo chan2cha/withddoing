@@ -34,6 +34,12 @@ export interface VisitInfo {
     // 외부 후기 링크
     links?: VisitLink[];
 }
+export interface SubStop {
+    name: string;
+    type?: VisitType;
+    note?: string;
+    links?: VisitLink[];
+}
 
 export interface ItineraryItem {
     time: string;
@@ -43,6 +49,7 @@ export interface ItineraryItem {
     transport?: string;
     planB?: string;
     visit?: VisitInfo;
+    subStops?: SubStop[];
 }
 
 export interface ItineraryDay {

@@ -1,4 +1,4 @@
-"use client";
+
 
 import type { VisitLink } from "@/types/itinerary";
 

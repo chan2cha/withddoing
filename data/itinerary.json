@@ -26,107 +26,89 @@
           "time": "05:35",
           "icon": "✈️",
           "title": "푸꾸옥 도착",
-          "detail": "입국/수하물 40~60분",
+          "detail": "기본 40~60분 / 패스트트랙(유료) 5분",
           "transport": "도보 → 픽업/차량",
-          "planB": "입국 지연 시 모닝투어 첫 코스 축소",
+          "planB": "패스트트랙",
           "visit": {
             "name": "푸꾸옥 국제공항",
             "type": "airport",
             "location": "Phu Quoc International Airport",
             "duration": "40~60분",
             "note": "입국 심사/수하물 수령 시간 감안",
-            "highlight": "도착 직후 유심/환전/픽업 확인",
+            "highlight": "출구 게이트 나와서 왼쪽 푸꾸옥 고스트 테이블 찾기",
             "caution": "짐 찾는 시간에 따라 이후 일정 밀릴 수 있음",
             "links": [
-              { "label": "공항 정보", "url": "", "kind": "review" },
-              { "label": "지도 보기", "url": "", "kind": "map" }
+              { "label": "공항 내 식당 ", "url": "https://blog.naver.com/flytosky314/224073416792", "kind": "review" },
+              { "label": "패스트 트랙", "url": "https://cafe.naver.com/minecraftpe/3064451", "kind": "review" }
             ]
           }
         },
         {
           "time": "07:00",
-          "icon": "🍜",
+          "icon": "🚌",
           "title": "모닝투어 시작",
-          "detail": "쌀국수 → 카페 → 호국사",
-          "transport": "차량 이동",
-          "planB": "컨디션 안 좋으면 쌀국수+카페까지만 진행",
+          "detail": "쌀국수 → 카페 → 호국사 → 킹콩마트 → 크라운스파 → 껌냐 점심",
+          "transport": "투어 차량",
+          "planB": "입국 지연 또는 피로 시 카페/호국사 코스 일부 축소",
           "visit": {
-            "name": "모닝투어 루트",
+            "name": "모닝투어",
             "type": "transport",
             "location": "공항 근처 → 시내권 이동",
-            "duration": "약 3~4시간",
-            "note": "첫날은 무리하지 않고 핵심만",
-            "highlight": "쌀국수, 카페, 호국사",
-            "caution": "입국 지연/피로 누적 시 코스 축소",
+            "duration": "오전 ~ 점심",
+            "note": "첫날 외부 이동은 모닝투어로 한 번에 진행",
+            "highlight": "킹콩마트, 크라운스파, 껌냐 점심 포함",
+            "caution": "민소매,반바지,슬리퍼 금지",
             "links": [
-              { "label": "모닝투어 후기", "url": "", "kind": "blog" },
-              { "label": "관련 영상", "url": "", "kind": "youtube" }
+              {
+                "label": "모닝투어 후기",
+                "url": "https://m.blog.naver.com/toothmomdiary/223896666451",
+                "kind": "blog"
+              },
+              {
+                "label": "관련 영상",
+                "url": "https://www.youtube.com/watch?v=D7gk99IFR64",
+                "kind": "youtube"
+              }
             ]
-          }
-        },
-        {
-          "time": "11:00",
-          "icon": "🛒",
-          "title": "킹콩마트",
-          "detail": "장보기/기념품 (45~60분 컷)",
-          "transport": "차량 이동",
-          "planB": "피곤하면 생수/간식/선크림만 빠르게 구매",
-          "visit": {
-            "name": "Kingkong Mart",
-            "type": "shopping",
-            "location": "푸꾸옥 시내 마트",
-            "duration": "45~60분",
-            "note": "첫날 생수/간식/기념품 한 번에 정리",
-            "highlight": "과자, 생수, 간식, 선크림, 기념품",
-            "caution": "오래 머물면 첫날 체력 소모 큼",
-            "links": [
-              { "label": "마트 후기", "url": "", "kind": "blog" },
-              { "label": "유튜브 영상", "url": "", "kind": "youtube" },
-              { "label": "지도 보기", "url": "", "kind": "map" }
-            ]
-          }
-        },
-        {
-          "time": "12:15",
-          "icon": "💆",
-          "title": "크라운스파 60분",
-          "detail": "투어 포함(임산부 gentle)",
-          "transport": "차량 이동",
-          "planB": "입국 피로가 심하면 마사지 시간 축소 또는 스킵",
-          "visit": {
-            "name": "Crown Spa",
-            "type": "spa",
-            "location": "푸꾸옥 시내 스파",
-            "duration": "60분",
-            "note": "첫날 피로 회복용",
-            "highlight": "부드러운 강도 요청",
-            "caution": "임산부는 강한 압 피하기",
-            "links": [
-              { "label": "스파 후기", "url": "", "kind": "blog" },
-              { "label": "지도 보기", "url": "", "kind": "map" }
-            ]
-          }
-        },
-        {
-          "time": "13:20",
-          "icon": "🍚",
-          "title": "껌냐 점심",
-          "detail": "별도 주문, 과식 금지",
-          "transport": "도보 또는 차량 짧은 이동",
-          "planB": "입맛 없으면 죽/국물류 위주로 간단히",
-          "visit": {
-            "name": "껌냐 점심 식당",
-            "type": "restaurant",
-            "location": "시내 식당권",
-            "duration": "40~60분",
-            "note": "첫날은 가볍고 익힌 음식 위주",
-            "recommendedMenu": ["껌냐", "국물류", "볶음밥"],
-            "orderTip": "임산부 음식은 완전히 익힌 메뉴 위주",
-            "links": [
-              { "label": "식당 후기", "url": "", "kind": "blog" },
-              { "label": "지도 보기", "url": "", "kind": "map" }
-            ]
-          }
+          },
+          "subStops": [
+            {
+              "name": "호국사",
+              "type": "sightseeing",
+              "note": "상황 따라 축소 가능",
+              "links": [
+                {
+                  "label": "호국사 후기",
+                  "url": "",
+                  "kind": "blog"
+                }
+              ]
+            },
+            {
+              "name": "Kingkong Mart",
+              "type": "shopping",
+              "note": "장보기/기념품, 45~60분",
+              "links": [
+                {
+                  "label": "마트 후기",
+                  "url": "",
+                  "kind": "blog"
+                }
+              ]
+            },
+            {
+              "name": "껌냐 점심",
+              "type": "restaurant",
+              "note": "과식 금지, 익힌 음식 위주",
+              "links": [
+                {
+                  "label": "식당 후기",
+                  "url": "",
+                  "kind": "blog"
+                }
+              ]
+            }
+          ]
         },
         {
           "time": "15:00",
@@ -134,7 +116,6 @@
           "title": "체크인 + 낮잠",
           "detail": "첫날 추가 외출 X",
           "transport": "차량 이동",
-          "planB": "컨디션 안 좋으면 룸서비스로 저녁 대체",
           "visit": {
             "name": "Sheraton Phu Quoc Long Beach Resort",
             "type": "hotel",
@@ -145,8 +126,7 @@
             "caution": "첫날 외출 추가하지 않기",
             "links": [
               { "label": "리조트 후기", "url": "", "kind": "blog" },
-              { "label": "유튜브 영상", "url": "", "kind": "youtube" },
-              { "label": "지도 보기", "url": "", "kind": "map" }
+              { "label": "유튜브 영상", "url": "", "kind": "youtube" }
             ]
           }
         }
