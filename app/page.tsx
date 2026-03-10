@@ -221,11 +221,6 @@ export default function HomePage() {
                   </div>
                 </section>
             ) : null}
-            <div className="actionRow">
-              <a className="btn" href="/pdf/itinerary.pdf" target="_blank">
-                📄 PDF 백업 열기
-              </a>
-            </div>
           </section>
         </div>
 

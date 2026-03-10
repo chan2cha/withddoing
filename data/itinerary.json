@@ -11,9 +11,8 @@
   "hotelInfo": {
     "name": "Sheraton Phu Quoc Long Beach Resort",
     "links": [
-      { "label": "지도 보기", "url": "", "kind": "map" },
-      { "label": "유튜브 영상", "url": "", "kind": "youtube" },
-      { "label": "숙소 후기", "url": "", "kind": "blog" }
+      { "label": "리조트 후기", "url": "https://blog.naver.com/yinseefe23k/224068255452", "kind": "blog" },
+      { "label": "유튜브 영상", "url": "https://www.youtube.com/watch?v=E3eYSF-Uca0", "kind": "youtube" }
     ]
   },
   "days": [
@@ -79,7 +78,7 @@
               "links": [
                 {
                   "label": "호국사 후기",
-                  "url": "",
+                  "url": "https://blog.naver.com/s_shi_/224125621339",
                   "kind": "blog"
                 }
               ]
@@ -91,7 +90,7 @@
               "links": [
                 {
                   "label": "마트 후기",
-                  "url": "",
+                  "url": "https://blog.naver.com/l_b_v/224207273457?isInf=true&infParams=eyJzY2lkIjoxMTExNjEyNjgyMzY0MTYsInNraWQiOjYyMjU3NDkwOTMxNTQyNCwiY2lkIjo5Mjc3OTYzNDg1OTQxNDQsInF1ZXJ5IjoiJUVEJTkxJUI4JUVBJUJFJUI4JUVDJTk4JUE1JUVEJTgyJUI5JUVDJUJEJUE5JUVCJUE3JTg4JUVEJThBJUI4In0=&trackingCode=nx",
                   "kind": "blog"
                 }
               ]
@@ -99,11 +98,11 @@
             {
               "name": "껌냐 점심",
               "type": "restaurant",
-              "note": "과식 금지, 익힌 음식 위주",
+
               "links": [
                 {
                   "label": "식당 후기",
-                  "url": "",
+                  "url": "https://blog.naver.com/jiyeong256/224195993233",
                   "kind": "blog"
                 }
               ]
@@ -125,8 +124,8 @@
             "highlight": "체크인, 낮잠, 리조트 휴식",
             "caution": "첫날 외출 추가하지 않기",
             "links": [
-              { "label": "리조트 후기", "url": "", "kind": "blog" },
-              { "label": "유튜브 영상", "url": "", "kind": "youtube" }
+              { "label": "리조트 후기", "url": "https://blog.naver.com/yinseefe23k/224068255452", "kind": "blog" },
+              { "label": "유튜브 영상", "url": "https://www.youtube.com/watch?v=E3eYSF-Uca0", "kind": "youtube" }
             ]
           }
         }
