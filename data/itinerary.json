@@ -241,7 +241,7 @@
             "links": [
               { "label": "사파리 후기", "url": "https://blog.naver.com/hehev84/224191666509", "kind": "blog" },
               { "label": "유튜브 영상", "url": "https://www.youtube.com/watch?v=eGkp4Nr-KRY", "kind": "youtube" },
-              { "label": "지도 보기", "url": "/safariMap.png", "kind": "map" }
+              { "label": "지도 보기", "url": "/safariMap.png", "kind": "image" }
             ]
           }
         },

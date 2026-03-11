@@ -1,4 +1,5 @@
-export type VisitLinkKind = "blog" | "youtube" | "map" | "review";
+export type VisitLinkKind = "blog" | "youtube" | "map" | "review"|"image"
+| "pdf";
 
 export type VisitType =
     | "airport"
