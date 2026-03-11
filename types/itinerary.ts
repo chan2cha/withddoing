@@ -57,6 +57,7 @@ export interface ItineraryDay {
     dow: string;
     title: string;
     items: ItineraryItem[];
+    day:string;
 }
 
 export interface HighlightItem {
@@ -79,4 +80,5 @@ export interface ItineraryData {
     dates: string[];
     highlights: HighlightItem[];
     days: ItineraryDay[];
+
 }

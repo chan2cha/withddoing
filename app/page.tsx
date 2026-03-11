@@ -4,17 +4,17 @@ import { useMemo, useState } from "react";
 import LayoutShell from "@/components/LayoutShell";
 import VisitLinksModal from "@/components/VisitLinksModal";
 import itineraryData from "@/data/itinerary.json";
-import type { ItineraryData, VisitLink } from "@/types/itinerary";
+import type {ItineraryData, ItineraryDay, VisitLink} from "@/types/itinerary";
 import DetailButton from "@/components/DetailButton";
 
-import day1Route from "@/data/routes/day1.json";
-import type { RouteFeatureCollection } from "@/types/map";
+
+import {mapRoute} from "@/data/routes/map"
 import dynamic from "next/dynamic";
 
 const RouteMap = dynamic(() => import("@/components/RouteMap"), {
   ssr: false,
 });
-const day1MapData = day1Route as RouteFeatureCollection;
+
 const itinerary = itineraryData as ItineraryData;
 function makeDateParts(date: string, dow: string) {
   return {
@@ -23,27 +23,19 @@ function makeDateParts(date: string, dow: string) {
   };
 }
 
-function getInitialSelectedDate() {
-  const today = new Date();
-  const yyyy = today.getFullYear();
-  const mm = String(today.getMonth() + 1).padStart(2, "0");
-  const dd = String(today.getDate()).padStart(2, "0");
-  const todayStr = `${yyyy}-${mm}-${dd}`;
-
-  const matched = itinerary.days.find((d) => d.date === todayStr);
-  return matched ? matched.date : itinerary.dates[0];
-}
 
 
 
 export default function HomePage() {
-  const [selected, setSelected] = useState(getInitialSelectedDate());
+  const [selected, setSelected] = useState<ItineraryDay>();
+
+const selectedRoute = mapRoute[selected?.day ?? "1"];
   const [modalTitle, setModalTitle] = useState("");
   const [modalLinks, setModalLinks] = useState<VisitLink[]>([]);
   const [open, setOpen] = useState(false);
 
   const day = useMemo(
-      () => itinerary.days.find((d) => d.date === selected),
+      () => itinerary.days.find((d) => d.day === (selected?.day ?? "1")),
       [selected]
   );
 
@@ -63,9 +55,12 @@ export default function HomePage() {
 
               return (
                   <button
-                      key={d.date}
-                      className={`tab dateTab ${selected === d.date ? "active" : ""}`}
-                      onClick={() => setSelected(d.date)}
+                      key={d.day}
+                      className={`tab dateTab ${(selected?.day ?? "1") === d.day ? "active" : ""}`}
+                      onClick={() => {
+                        setSelected(d)
+
+                      }}
                   >
                     <span className="dateTabMain">{parts.mmdd}</span>
                     <span className="dateTabSub">{parts.dow}</span>
@@ -209,19 +204,18 @@ export default function HomePage() {
                 </div>
             )}
           </section>
-
+          {selectedRoute && (
           <section className="card">
-            {selected === "2026-04-02" ? (
                 <section className="card" style={{ marginTop: 12 }}>
-                  <h2 className="h2">🗺️ 1일차 이동 경로</h2>
+                  <h2 className="h2">🗺️ {selected?.day ?? "1"}일차 이동 경로</h2>
                   <div className="small">온라인이면 배경지도가 보이고, 오프라인에서도 경로와 포인트는 확인할 수 있어요.</div>
 
                   <div style={{ marginTop: 10 }}>
-                    <RouteMap data={day1MapData} title="도착 + 모닝투어 + 체크인" />
+                    <RouteMap key={selected?.day} data={selectedRoute} title={selected?.title} />
                   </div>
                 </section>
-            ) : null}
           </section>
+          )}
         </div>
 
         <VisitLinksModal
