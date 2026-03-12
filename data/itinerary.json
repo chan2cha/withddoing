@@ -345,7 +345,7 @@
       "title": "선셋타운(스파더엘) + Kiss of the Sea",
       "items": [
         {
-          "time": "15:30",
+          "time": "14:00",
           "icon": "🚗",
           "title": "쉐라톤 픽업(샵 차량)",
           "detail": "왕복 $60",
@@ -353,12 +353,12 @@
           "planB": "픽업 지연 시 샵에 즉시 연락"
         },
         {
-          "time": "16:45",
+          "time": "15:30",
           "icon": "💆",
           "title": "스파더엘 90분 마사지",
-          "detail": "30% 할인 적용",
-          "transport": "차량 도착 후 도보",
-          "planB": "컨디션 안 좋으면 60분 또는 강도 약하게 요청",
+          "detail": "30% 할인 적용 (리뷰 작성)",
+          "transport": "픽업",
+          "planB": "아프면 강도 약하게 요청",
           "visit": {
             "name": "Spa The El",
             "type": "spa",
@@ -366,40 +366,32 @@
             "duration": "90분",
             "note": "쇼 전 컨디션 조절용",
             "highlight": "강도 약하게 요청 가능",
-            "caution": "민감 부위 압 강도 사전 요청",
+            "caution": "민감 부위 압 강도 사전 요청"
+          }
+        },
+        {
+          "time": "17:15",
+          "icon": "\uD83D\uDEFA",
+          "title": "버기투어",
+          "detail": "스파더엘앞으로 픽업대기요청 / 허기질 수 있으니 먹을거 챙기거나 군것질",
+          "transport": "버기",
+          "planB": "걸어서 구경",
+          "visit": {
+            "name": "버기투어",
+            "type": "sightseeing",
+            "location": "Sunset Town",
+            "duration": "40~60분",
+            "note": "키스브릿지 샌딩 요청, 사진 많이 찍기" ,
             "links": [
-              { "label": "스파 후기", "url": "", "kind": "blog" },
-              { "label": "지도 보기", "url": "", "kind": "map" }
+              { "label": "버기 투어 후기", "url": "https://blog.naver.com/eksalrhd/224212792660", "kind": "blog" }
             ]
           }
         },
         {
           "time": "18:15",
-          "icon": "🍽️",
-          "title": "저녁(선셋타운)",
-          "detail": "과식 금지, 얼음 적게/빼기",
-          "transport": "도보",
-          "planB": "시간 밀리면 간단한 메뉴만 먹고 이동",
-          "visit": {
-            "name": "Sunset Town 저녁 식사",
-            "type": "restaurant",
-            "location": "Sunset Town",
-            "duration": "40~60분",
-            "note": "공연 전 가볍게 먹는 저녁",
-            "recommendedMenu": ["볶음밥", "구이류", "국물 메뉴"],
-            "orderTip": "얼음 빼기, 완전 익힌 음식, 과식 금지",
-            "links": [
-              { "label": "선셋타운 식당 후기", "url": "", "kind": "blog" },
-              { "label": "유튜브 영상", "url": "", "kind": "youtube" },
-              { "label": "지도 보기", "url": "", "kind": "map" }
-            ]
-          }
-        },
-        {
-          "time": "19:05",
           "icon": "🌉",
           "title": "키스브리지",
-          "detail": "30분 컷(21:45 복귀 마감 대비)",
+          "detail": "30분 컷",
           "transport": "도보",
           "planB": "줄 길거나 더우면 사진만 빠르게",
           "visit": {
@@ -411,10 +403,23 @@
             "highlight": "사진 촬영, 산책",
             "caution": "체류시간 길어지지 않게 관리",
             "links": [
-              { "label": "브리지 후기", "url": "", "kind": "blog" },
-              { "label": "야경 영상", "url": "", "kind": "youtube" },
-              { "label": "지도 보기", "url": "", "kind": "map" }
+              { "label": "브리지 후기", "url": "https://blog.naver.com/naralatte/224187352610", "kind": "blog" }
             ]
+          }
+        },
+        {
+          "time": "19:00",
+          "icon": "🍽️",
+          "title": "저녁(선셋타운)",
+          "detail": "야시장 구경하면서 들어가고싶은곳 가기",
+          "transport": "도보",
+          "planB": "먹다가 심포니 쇼 보러 해변가 이동",
+          "visit": {
+            "name": "Sunset Town 저녁 식사",
+            "type": "restaurant",
+            "location": "Sunset Town",
+            "duration": "40~60분",
+            "note": "공연 전 가볍게 먹는 저녁"
           }
         },
         {
@@ -439,19 +444,14 @@
             "duration": "약 1시간",
             "note": "대표 야간 공연",
             "highlight": "분수, 조명, 쇼 연출",
-            "caution": "쇼 종료 후 복귀 동선 바로 이동",
-            "links": [
-              { "label": "공연 후기", "url": "", "kind": "blog" },
-              { "label": "공연 영상", "url": "", "kind": "youtube" },
-              { "label": "지도 보기", "url": "", "kind": "map" }
-            ]
+            "caution": "쇼 종료 후 복귀 동선 바로 이동"
           }
         },
         {
           "time": "21:45",
           "icon": "⏱️",
           "title": "스파더엘 복귀(필수)",
-          "detail": "마감 준수",
+          "detail": "마감 준수 늦어도 21:50",
           "transport": "도보 이동",
           "planB": "쇼 종료 직후 바로 이동"
         },
