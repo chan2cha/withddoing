@@ -476,16 +476,15 @@
           "icon": "🧳",
           "title": "조식 + 짐 정리",
           "detail": "여유 있게",
-          "transport": "도보",
+          "transport": "버기",
           "planB": "늦어지면 짐 정리 우선"
         },
         {
-          "time": "12:00",
+          "time": "11:30",
           "icon": "🏨",
-          "title": "체크아웃",
-          "detail": "짐 보관(리조트/스파)",
-          "transport": "도보",
-          "planB": "체크아웃 지연 없이 먼저 짐 맡기기",
+          "title": "체크아웃및 로비 픽업",
+          "detail": "편도 20불 추가/캐리어 개수 고지 필요",
+          "transport": "픽업차량",
           "visit": {
             "name": "Sheraton Phu Quoc Long Beach Resort",
             "type": "hotel",
@@ -493,32 +492,21 @@
             "duration": "체크아웃 절차",
             "note": "짐 보관 후 마지막 일정 진행",
             "highlight": "체크아웃, 짐 맡기기",
-            "caution": "귀국일은 일정 밀리면 바로 공항 우선",
-            "links": [
-              { "label": "리조트 후기", "url": "", "kind": "blog" },
-              { "label": "지도 보기", "url": "", "kind": "map" }
-            ]
+            "caution": "귀국일은 일정 밀리면 바로 공항 우선"
           }
         },
         {
-          "time": "13:45",
+          "time": "12:30",
           "icon": "💆",
-          "title": "제니스 스파 60분",
-          "detail": "14:45 종료 목표",
-          "transport": "차량 이동",
-          "planB": "시간 밀리면 마사지 축소 또는 스킵",
+          "title": "제니스 스파 90분",
+          "transport": "샌딩",
           "visit": {
             "name": "Zenith Spa",
             "type": "spa",
             "location": "공항 이동 전 들르기 좋은 스파",
-            "duration": "60분",
             "note": "귀국 전 마지막 정리용 일정",
             "highlight": "가벼운 피로 회복",
-            "caution": "공항 이동 시간 최우선",
-            "links": [
-              { "label": "스파 후기", "url": "", "kind": "blog" },
-              { "label": "지도 보기", "url": "", "kind": "map" }
-            ]
+            "caution": "공항 이동 시간 최우선"
           }
         },
         {
@@ -527,18 +515,16 @@
           "title": "공항 이동",
           "detail": "공항 16:00 이전 도착 권장",
           "transport": "차량 이동",
-          "planB": "마사지/점심 밀리면 바로 공항 이동",
           "visit": {
             "name": "푸꾸옥 국제공항",
             "type": "airport",
             "location": "Phu Quoc International Airport",
-            "duration": "출국 전 대기",
+            "duration": "출국 전 대기 및 식사",
             "note": "체크인/출국 심사 여유 확보",
-            "highlight": "16:00 이전 도착 목표",
+            "highlight": "출국 심사 후 식당 서치/ 반미 기내반입가능",
             "caution": "귀국일은 공항 우선",
             "links": [
-              { "label": "공항 정보", "url": "", "kind": "review" },
-              { "label": "지도 보기", "url": "", "kind": "map" }
+              { "label": "출국 팁 ", "url": "https://blog.naver.com/dark1oo6/223645043563", "kind": "review" }
             ]
           }
         },
