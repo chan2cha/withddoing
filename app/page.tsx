@@ -84,6 +84,7 @@ const selectedRoute = mapRoute[selected?.day ?? "1"];
                         <div>
                           <div className="time">{item.time}</div>
                           <div className="icon">{item.icon}</div>
+                          <div className="time">{item.amount}</div>
                         </div>
 
                         <div>

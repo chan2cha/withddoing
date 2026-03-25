@@ -45,6 +45,7 @@ export interface SubStop {
 export interface ItineraryItem {
     time: string;
     icon: string;
+    amount: string;
     title: string;
     detail: string;
     transport?: string;
