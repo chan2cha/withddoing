@@ -6,6 +6,7 @@ import { useState } from "react";
 import itineraryData from "@/data/itinerary.json";
 import type { ItineraryData, VisitLink } from "@/types/itinerary";
 import VisitLinksModal from "@/components/VisitLinksModal";
+import ExchangeRateSheet from "@/components/ExchangeRateSheet";
 
 const itinerary = itineraryData as ItineraryData;
 
@@ -20,8 +21,7 @@ export default function LayoutShell({
     const tabs = [
         { href: "/", label: "오늘" },
         { href: "/schedule", label: "전체 일정" },
-        { href: "/checklist", label: "체크리스트" },
-        { href: "/rules", label: "운영룰" },
+        { href: "/checklist", label: "체크리스트" }
     ];
 
     const hotelLinks: VisitLink[] = itinerary.hotelInfo?.links ?? [];
@@ -38,13 +38,6 @@ export default function LayoutShell({
       <span className="headerMetaText">
         {itinerary.dateRangeLabel}
       </span>
-
-                            <span className="headerMetaDot">·</span>
-
-                            <span className="headerMetaText">
-        {itinerary.party}
-      </span>
-
                             <button
                                 type="button"
                                 className="headerMetaBadge"
@@ -54,6 +47,7 @@ export default function LayoutShell({
                             >
                                 리조트 정보 🏨
                             </button>
+                            <ExchangeRateSheet />
                         </div>
                     </div>
                 </div>

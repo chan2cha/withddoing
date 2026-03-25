@@ -81,5 +81,4 @@ export interface ItineraryData {
     dates: string[];
     highlights: HighlightItem[];
     days: ItineraryDay[];
-
 }

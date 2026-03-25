@@ -3,6 +3,7 @@
   "hotel": "Sheraton Phu Quoc Long Beach Resort",
   "dates": ["2026-04-02", "2026-04-03", "2026-04-04", "2026-04-05", "2026-04-06"],
   "dateRangeLabel": "2026.04.02 - 2026.04.06",
+
   "highlights": [
     { "time": "09:30", "label": "사파리 주 트램", "note": "Grab 1순위 / 시간 엄수" },
     { "time": "21:45", "label": "스파더엘 복귀", "note": "샵 차량 샌딩 마감" },
@@ -54,7 +55,7 @@
             "type": "transport",
             "location": "공항 근처 → 시내권 이동",
             "duration": "오전 ~ 점심",
-            "note": "첫날 외부 이동은 모닝투어로 한 번에 진행",
+            "note": "첫날 외부 이동은 모닝투어로 한 번에 진행, 현장결제 ",
             "highlight": "킹콩마트, 크라운스파, 껌냐 점심 포함",
             "caution": "민소매,반바지,슬리퍼 금지",
             "links": [
