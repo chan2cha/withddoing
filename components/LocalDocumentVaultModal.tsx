@@ -16,6 +16,7 @@ interface Props {
 }
 
 type Category = "passport" | "voucher" | "ticket" | "insurance" | "other";
+type FilterValue = "all" | Category;
 
 const categoryLabelMap: Record<Category, string> = {
   passport: "여권",
@@ -24,6 +25,15 @@ const categoryLabelMap: Record<Category, string> = {
   insurance: "보험",
   other: "기타",
 };
+
+const filterOptions: Array<{ value: FilterValue; label: string }> = [
+  { value: "all", label: "전체" },
+  { value: "passport", label: "여권" },
+  { value: "voucher", label: "바우처" },
+  { value: "ticket", label: "항공권" },
+  { value: "insurance", label: "보험" },
+  { value: "other", label: "기타" },
+];
 
 function CloseIcon() {
   return (
@@ -39,34 +49,83 @@ function CloseIcon() {
   );
 }
 
+function DocumentIcon({ type }: { type: "image" | "pdf" }) {
+  if (type === "image") {
+    return (
+      <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+        <rect
+          x="3"
+          y="4"
+          width="18"
+          height="16"
+          rx="2"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+        />
+        <circle cx="9" cy="10" r="1.5" fill="currentColor" />
+        <path
+          d="M6 17l4-4 3 3 3-4 2 5"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+      <path
+        d="M8 3h6l5 5v11a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M14 3v5h5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M9 14h6M9 17h4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 export default function LocalDocumentVaultModal({ open, onClose }: Props) {
-  const [mounted, setMounted] = useState(false);
   const [documents, setDocuments] = useState<LocalDocumentItem[]>([]);
-  const [selectedId, setSelectedId] = useState("");
   const [titleInput, setTitleInput] = useState("");
   const [category, setCategory] = useState<Category>("passport");
+  const [filter, setFilter] = useState<FilterValue>("all");
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const [showUploadForm, setShowUploadForm] = useState(false);
+  const [viewerDocId, setViewerDocId] = useState("");
 
   const loadDocuments = useCallback(async () => {
     const docs = await getAllLocalDocuments();
     setDocuments(docs);
-    if (!selectedId && docs.length > 0) {
-      setSelectedId(docs[0].id);
-    }
-  }, [selectedId]);
+  }, []);
 
   useEffect(() => {
     if (!open) return;
-    document.body.style.overflow = "hidden";
 
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     void loadDocuments();
 
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = original;
     };
   }, [loadDocuments, open]);
 
@@ -89,8 +148,9 @@ export default function LocalDocumentVaultModal({ open, onClose }: Props) {
 
       const next = await getAllLocalDocuments();
       setDocuments(next);
-      setSelectedId(saved.id);
+      setViewerDocId(saved.id);
       setTitleInput("");
+      setShowUploadForm(false);
       e.target.value = "";
     } finally {
       setLoading(false);
@@ -104,158 +164,250 @@ export default function LocalDocumentVaultModal({ open, onClose }: Props) {
     await deleteLocalDocument(id);
     const next = await getAllLocalDocuments();
     setDocuments(next);
-    setSelectedId(next[0]?.id ?? "");
+    setViewerDocId((currentId) => (currentId === id ? "" : currentId));
   }
 
-  const selectedDoc = useMemo(
-    () => documents.find((d) => d.id === selectedId) ?? documents[0] ?? null,
-    [documents, selectedId]
+  const filteredDocuments = useMemo(() => {
+    const list =
+      filter === "all"
+        ? documents
+        : documents.filter((doc) => doc.category === filter);
+
+    return [...list].sort((a, b) => {
+      if (a.type !== b.type) {
+        return a.type === "image" ? -1 : 1;
+      }
+      return b.createdAt - a.createdAt;
+    });
+  }, [documents, filter]);
+
+  const viewerDoc = useMemo(
+    () => documents.find((doc) => doc.id === viewerDocId) ?? null,
+    [documents, viewerDocId]
   );
 
-  const previewUrl = useMemo(() => {
-    if (!selectedDoc) return "";
-    return URL.createObjectURL(selectedDoc.blob);
-  }, [selectedDoc]);
+  const imagePreviewUrls = useMemo(() => {
+    const entries = filteredDocuments
+      .filter((doc) => doc.type === "image")
+      .map((doc) => [doc.id, URL.createObjectURL(doc.blob)] as const);
+
+    return Object.fromEntries(entries);
+  }, [filteredDocuments]);
 
   useEffect(() => {
     return () => {
-      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      Object.values(imagePreviewUrls).forEach((url) => URL.revokeObjectURL(url));
     };
-  }, [previewUrl]);
+  }, [imagePreviewUrls]);
 
-  if (!mounted || !open) return null;
+  const viewerUrl = useMemo(() => {
+    if (!viewerDoc) return "";
+    return URL.createObjectURL(viewerDoc.blob);
+  }, [viewerDoc]);
+
+  useEffect(() => {
+    return () => {
+      if (viewerUrl) URL.revokeObjectURL(viewerUrl);
+    };
+  }, [viewerUrl]);
+
+  if (!open || typeof document === "undefined") return null;
 
   return createPortal(
-    <div className="modalDim" role="dialog" aria-modal="true" aria-label="문서함">
-      <div className="assetModalCard documentVaultCard">
-        <div className="modalHead">
-          <div>
-            <div className="modalTitle">문서함 📁</div>
-            <div className="small">문서는 이 기기 브라우저에만 저장됩니다.</div>
+    <>
+      <div className="modalDim" role="dialog" aria-modal="true" aria-label="문서함">
+        <div className="assetModalCard documentVaultCard">
+          <div className="modalHead">
+            <div>
+              <div className="modalTitle">문서함 📁</div>
+              <div className="small">저장된 문서를 먼저 보고, 필요할 때만 추가합니다.</div>
+            </div>
+
+            <button type="button" className="iconBtn" onClick={onClose} aria-label="닫기">
+              <CloseIcon />
+            </button>
           </div>
 
-          <button type="button" className="iconBtn" onClick={onClose} aria-label="닫기">
-            <CloseIcon />
-          </button>
-        </div>
+          <div className="documentToolbar">
+            <div className="documentFilterRow">
+              {filterOptions.map((option) => (
+                <button
+                  key={option.value}
+                  type="button"
+                  className={`documentFilterChip ${filter === option.value ? "active" : ""}`}
+                  onClick={() => setFilter(option.value)}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
 
-        <div className="documentUploadBox">
-          <div className="documentUploadRow">
-            <input
-              className="exchangeInput"
-              placeholder="문서 제목 (예: 엄마 여권 사본)"
-              value={titleInput}
-              onChange={(e) => setTitleInput(e.target.value)}
-            />
-
-            <select
-              className="documentSelect"
-              value={category}
-              onChange={(e) => setCategory(e.target.value as Category)}
+            <button
+              type="button"
+              className="btn documentAddToggle"
+              onClick={() => setShowUploadForm((prev) => !prev)}
             >
-              <option value="passport">여권</option>
-              <option value="ticket">항공권</option>
-              <option value="voucher">바우처</option>
-              <option value="insurance">보험</option>
-              <option value="other">기타</option>
-            </select>
-
-            <label className="btn documentUploadBtn">
-              {loading ? "저장 중..." : "문서 추가"}
-              <input
-                type="file"
-                accept="image/*,application/pdf"
-                onChange={handleFileChange}
-                hidden
-              />
-            </label>
+              {showUploadForm ? "추가 닫기" : "문서 추가"}
+            </button>
           </div>
-          <div className="small">
-            이미지나 PDF를 선택하면 서버 업로드 없이 이 기기에만 저장됩니다.
-          </div>
-        </div>
 
-        <div className="documentVaultLayout">
-          <aside className="documentVaultSidebar">
-            <div className="documentVaultList">
-              {documents.length === 0 ? (
-                <div className="small">아직 저장된 문서가 없습니다.</div>
-              ) : (
-                documents.map((doc) => {
-                  const active = selectedDoc?.id === doc.id;
+          {showUploadForm ? (
+            <div className="documentUploadBox">
+              <div className="documentUploadRow">
+                <input
+                  className="exchangeInput"
+                  placeholder="문서 제목 (예: 엄마 여권 사본)"
+                  value={titleInput}
+                  onChange={(e) => setTitleInput(e.target.value)}
+                />
+
+                <select
+                  className="documentSelect"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value as Category)}
+                >
+                  <option value="passport">여권</option>
+                  <option value="ticket">항공권</option>
+                  <option value="voucher">바우처</option>
+                  <option value="insurance">보험</option>
+                  <option value="other">기타</option>
+                </select>
+
+                <label className="btn documentUploadBtn">
+                  {loading ? "저장 중..." : "파일 선택"}
+                  <input
+                    type="file"
+                    accept="image/*,application/pdf"
+                    onChange={handleFileChange}
+                    hidden
+                  />
+                </label>
+              </div>
+              <div className="small">
+                이미지/PDF는 서버 업로드 없이 이 기기 브라우저에만 저장됩니다.
+              </div>
+            </div>
+          ) : null}
+
+          <div className="documentGallerySection">
+            {filteredDocuments.length === 0 ? (
+              <div className="documentEmptyState">
+                <div className="small">
+                  {documents.length === 0
+                    ? "아직 저장된 문서가 없습니다."
+                    : "선택한 필터에 해당하는 문서가 없습니다."}
+                </div>
+              </div>
+            ) : (
+              <div className="documentGalleryGrid">
+                {filteredDocuments.map((doc) => {
+                  const previewSrc = doc.type === "image" ? imagePreviewUrls[doc.id] : "";
 
                   return (
                     <button
                       key={doc.id}
                       type="button"
-                      className={`documentItemBtn ${active ? "active" : ""}`}
-                      onClick={() => setSelectedId(doc.id)}
+                      className="documentGalleryCard"
+                      onClick={() => setViewerDocId(doc.id)}
                     >
-                      <div className="documentItemTop">
-                        <span className="documentItemTitle">{doc.title}</span>
-                        <span className="documentItemBadge">
-                          {categoryLabelMap[doc.category]}
-                        </span>
+                      <div className={`documentThumb ${doc.type === "pdf" ? "isPdf" : ""}`}>
+                        {doc.type === "image" && previewSrc ? (
+                          <Image
+                            src={previewSrc}
+                            alt={doc.title}
+                            fill
+                            unoptimized
+                            className="documentThumbImage"
+                          />
+                        ) : (
+                          <div className="documentThumbPdf">
+                            <DocumentIcon type={doc.type} />
+                            <span>{doc.type === "pdf" ? "PDF" : "이미지"}</span>
+                          </div>
+                        )}
                       </div>
 
-                      <div className="small">
-                        {doc.type === "image" ? "이미지 문서" : "PDF 문서"} · {doc.fileName}
+                      <div className="documentCardMeta">
+                        <div className="documentCardTitle">{doc.title}</div>
+                        <div className="documentCardFooter">
+                          <span className="documentItemBadge">
+                            {categoryLabelMap[doc.category]}
+                          </span>
+                          <span className="documentCardType">
+                            {doc.type === "image" ? "이미지" : "PDF"}
+                          </span>
+                        </div>
                       </div>
                     </button>
                   );
-                })
-              )}
-            </div>
-          </aside>
-
-          <section className="documentVaultPreview">
-            {selectedDoc ? (
-              <>
-                <div className="documentPreviewHead">
-                  <div>
-                    <div className="documentPreviewTitle">{selectedDoc.title}</div>
-                    <div className="small">
-                      {categoryLabelMap[selectedDoc.category]} · {selectedDoc.fileName}
-                    </div>
-                  </div>
-
-                  <div className="actionRow">
-                    <button
-                      type="button"
-                      className="btn"
-                      onClick={() => handleDelete(selectedDoc.id)}
-                    >
-                      삭제
-                    </button>
-                  </div>
-                </div>
-
-                <div className="documentPreviewBody">
-                  {selectedDoc.type === "image" ? (
-                    <Image
-                      src={previewUrl}
-                      alt={selectedDoc.title}
-                      width={1200}
-                      height={1600}
-                      unoptimized
-                      className="assetPreviewImage"
-                    />
-                  ) : (
-                    <iframe
-                      src={previewUrl}
-                      title={selectedDoc.title}
-                      className="assetPreviewFrame"
-                    />
-                  )}
-                </div>
-              </>
-            ) : (
-              <div className="small">왼쪽에서 문서를 추가해 주세요.</div>
+                })}
+              </div>
             )}
-          </section>
+          </div>
         </div>
       </div>
-    </div>,
+
+      {viewerDoc ? (
+        <div className="modalDim" role="dialog" aria-modal="true" aria-label={viewerDoc.title}>
+          <div className="assetModalCard documentViewerCard">
+            <div className="modalHead">
+              <div>
+                <div className="modalTitle">{viewerDoc.title}</div>
+                <div className="small">
+                  {categoryLabelMap[viewerDoc.category]} · {viewerDoc.fileName}
+                </div>
+              </div>
+
+              <button
+                type="button"
+                className="iconBtn"
+                onClick={() => setViewerDocId("")}
+                aria-label="닫기"
+              >
+                <CloseIcon />
+              </button>
+            </div>
+
+            <div className="documentViewerBody">
+              {viewerDoc.type === "image" && viewerUrl ? (
+                <Image
+                  src={viewerUrl}
+                  alt={viewerDoc.title}
+                  width={1200}
+                  height={1600}
+                  unoptimized
+                  className="assetPreviewImage"
+                />
+              ) : (
+                <div className="documentPdfPanel">
+                  <DocumentIcon type="pdf" />
+                  <div className="documentPdfTitle">{viewerDoc.title}</div>
+                  <div className="small">PDF는 새 창에서 여는 방식이 가장 안정적입니다.</div>
+                </div>
+              )}
+            </div>
+
+            <div className="actionRow">
+              <a
+                href={viewerUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="btn"
+              >
+                {viewerDoc.type === "image" ? "원본 열기" : "PDF 열기"}
+              </a>
+              <button
+                type="button"
+                className="btn"
+                onClick={() => void handleDelete(viewerDoc.id)}
+              >
+                삭제
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </>,
     document.body
   );
 }
