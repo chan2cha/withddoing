@@ -8,6 +8,12 @@ export interface ExchangeRatesResponse {
     source: "live" | "cache";
 }
 
+interface FrankfurterRateRow {
+    quote: Currency;
+    rate: string;
+    date?: string;
+}
+
 const STORAGE_KEY = "exchange_rates_v1";
 
 export async function fetchExchangeRates(): Promise<ExchangeRatesResponse> {
@@ -20,10 +26,10 @@ export async function fetchExchangeRates(): Promise<ExchangeRatesResponse> {
         throw new Error("환율 조회 실패");
     }
 
-    const rows = await res.json();
+    const rows = (await res.json()) as FrankfurterRateRow[];
 
-    const usdToKrw = rows.find((r: any) => r.quote === "KRW")?.rate;
-    const usdToVnd = rows.find((r: any) => r.quote === "VND")?.rate;
+    const usdToKrw = rows.find((row) => row.quote === "KRW")?.rate;
+    const usdToVnd = rows.find((row) => row.quote === "VND")?.rate;
     const updatedAt = rows[0]?.date ?? new Date().toISOString();
 
     if (!usdToKrw || !usdToVnd) {
@@ -81,6 +87,12 @@ export function formatCurrency(value: number, currency: Currency): string {
     if (!Number.isFinite(value)) return "-";
 
     return new Intl.NumberFormat("ko-KR", {
+        minimumFractionDigits: 0,
         maximumFractionDigits: currency === "USD" ? 2 : 0,
     }).format(value);
+}
+
+export function prettyUpdatedAt(value: string): string {
+    if (!value) return "-";
+    return value.length >= 10 ? value.slice(0, 10) : value;
 }

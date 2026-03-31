@@ -1,0 +1,154 @@
+.documentVaultCard {
+  width: min(100%, 1080px);
+  max-height: 88vh;
+}
+
+.documentVaultLayout {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 14px;
+}
+
+.documentVaultSidebar {
+  min-width: 0;
+}
+
+.documentVaultList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.documentItemBtn {
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+  background: #fbfeff;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.documentItemBtn:hover {
+  background: #f3fbff;
+}
+
+.documentItemBtn.active {
+  background: #eaf8ff;
+  border-color: var(--line-strong);
+}
+
+.documentItemTop {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.documentItemTitle {
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+.documentItemBadge {
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: var(--chip);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.documentVaultPreview {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.documentPreviewHead {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.documentPreviewTitle {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+.documentPreviewBody {
+  min-width: 0;
+}
+
+.documentUploadBox {
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #f7fcff;
+}
+
+.documentUploadRow {
+  display: grid;
+  grid-template-columns: 1fr 140px 120px;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.documentSelect {
+  height: 48px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: white;
+  padding: 0 12px;
+  font: inherit;
+  color: var(--ink);
+  outline: none;
+}
+
+.documentUploadBtn {
+  width: 100%;
+}
+
+@media (max-width: 860px) {
+  .documentVaultLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .documentVaultSidebar {
+    max-height: 220px;
+    overflow: auto;
+  }
+
+  .documentUploadRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .documentVaultCard {
+    padding: 12px;
+    max-height: 92vh;
+  }
+
+  .documentVaultSidebar {
+    max-height: 180px;
+  }
+
+  .documentItemTitle {
+    font-size: 13px;
+  }
+
+  .documentPreviewTitle {
+    font-size: 15px;
+  }
+}

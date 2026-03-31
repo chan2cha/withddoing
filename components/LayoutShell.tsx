@@ -7,7 +7,7 @@ import itineraryData from "@/data/itinerary.json";
 import type { ItineraryData, VisitLink } from "@/types/itinerary";
 import VisitLinksModal from "@/components/VisitLinksModal";
 import ExchangeRateSheet from "@/components/ExchangeRateSheet";
-
+import LocalDocumentVaultModal from "@/components/LocalDocumentVaultModal";
 const itinerary = itineraryData as ItineraryData;
 
 export default function LayoutShell({
@@ -17,7 +17,7 @@ export default function LayoutShell({
 }) {
     const pathname = usePathname();
     const [open, setOpen] = useState(false);
-
+const [documentOpen, setDocumentOpen] = useState(false);
     const tabs = [
         { href: "/", label: "오늘" },
         { href: "/schedule", label: "전체 일정" },
@@ -35,9 +35,7 @@ export default function LayoutShell({
                         <div className="title">{itinerary.tripName}</div>
 
                         <div className="headerMetaRow">
-      <span className="headerMetaText">
-        {itinerary.dateRangeLabel}
-      </span>
+    
                             <button
                                 type="button"
                                 className="headerMetaBadge"
@@ -48,6 +46,16 @@ export default function LayoutShell({
                                 리조트 정보 🏨
                             </button>
                             <ExchangeRateSheet />
+                            
+                            <button
+    type="button"
+    className="headerMetaBadge"
+    onClick={() => setDocumentOpen(true)}
+    aria-label="문서함 열기"
+    title="문서함"
+  >
+    문서함 📁
+  </button>
                         </div>
                     </div>
                 </div>
@@ -72,9 +80,12 @@ export default function LayoutShell({
             {children}
 
             <footer className="footer">
-                일정·체크리스트·운영룰을 한 화면에서 빠르게 확인해요 ✈️
+                일정·체크리스트을 한 화면에서 빠르게 확인해요 ✈️
             </footer>
-
+<LocalDocumentVaultModal
+  open={documentOpen}
+  onClose={() => setDocumentOpen(false)}
+/>
             <VisitLinksModal
                 open={open}
                 title={itinerary.hotelInfo?.name || itinerary.hotel}

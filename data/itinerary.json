@@ -22,6 +22,7 @@
       "day": "1",
       "dow": "목",
       "title": "도착 + 모닝투어 + 체크인",
+    
       "items": [
         {
           "time": "05:35",
@@ -118,6 +119,7 @@
           "title": "체크인 + 낮잠",
           "detail": "첫날 추가 외출 X",
           "transport": "차량 이동",
+         
           "visit": {
             "name": "Sheraton Phu Quoc Long Beach Resort",
             "type": "hotel",
@@ -184,6 +186,10 @@
           "detail": "임산부는 완전 익힌 메뉴",
           "transport": "도착 후 도보",
           "planB": "대기 길면 주문 간단히 하고 체류시간 축소",
+          "voucher":{
+            "label": "그랩 할인쿠폰",
+            "file":"/voucher/grab.pdf"
+          },
           "visit": {
             "name": "Biên Hải Quán",
             "type": "restaurant",
@@ -235,6 +241,10 @@
           "title": "사파리 도착",
           "detail": "해피스낵에서 주트램입장권 받고 사파리 버스 탑승 하러 이동",
           "transport": "도보 이동",
+          "voucher":{
+            "label" : "사파리입장권",
+            "file":"/voucher/safari.pdf"
+          },
           "visit": {
             "name": "Vinpearl Safari Phu Quoc",
             "type": "sightseeing",
@@ -252,7 +262,11 @@
           "time": "09:30",
           "icon": "🚋",
           "title": "사파리 버스 후 선택 ",
-          "detail": "왼쪽좌석 추천"
+          "detail": "왼쪽좌석 추천",
+          "voucher":{
+            "label": "zoo tram",
+            "file" : "/voucher/zoo tram.pdf"
+          }
         },
         {
           "time": "10:00 / 14:00",
@@ -282,6 +296,10 @@
           "icon": "🚤",
           "title": "수상택시/운하 산책",
           "detail": "30분정도 대기 가능 일몰때 최고(17:30분이후) 4명정원",
+          "voucher":{
+            "file":"/voucher/water taxi.pdf",
+            "label":"수상 택시"
+          },
           "transport": "도보",
           "visit": {
             "name": "Grand World 운하 구역",
@@ -440,6 +458,10 @@
           "icon": "🎭",
           "title": "Kiss of the Sea",
           "detail": "쇼 관람",
+          "voucher":{
+           "file":"/voucher/kiss of the sea.pdf",
+           "label":"키스오브더씨관람권"
+          },
           "transport": "착석",
           "planB": "피곤하면 중간 퇴장도 가능하도록 통로석 선호",
           "visit": {

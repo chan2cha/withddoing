@@ -1,4 +1,4 @@
-import type { RouteFeatureCollection, RouteFeature } from "@/types/map";
+import type { RouteFeatureCollection } from "@/types/map";
 
 export function getPointFeatures(data: RouteFeatureCollection) {
     return data.features.filter(

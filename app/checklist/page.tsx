@@ -7,15 +7,21 @@ import checklist from "@/data/checklist.json";
 type CheckedMap = Record<string, boolean>;
 const STORAGE_KEY = "withddoing-checklist-v1";
 
-export default function ChecklistPage() {
-    const [checked, setChecked] = useState<CheckedMap>({});
+function getInitialChecked(): CheckedMap {
+    if (typeof window === "undefined") return {};
 
-    useEffect(() => {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) {
-            setChecked(JSON.parse(saved));
-        }
-    }, []);
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return {};
+
+    try {
+        return JSON.parse(saved) as CheckedMap;
+    } catch {
+        return {};
+    }
+}
+
+export default function ChecklistPage() {
+    const [checked, setChecked] = useState<CheckedMap>(getInitialChecked);
 
     useEffect(() => {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(checked));

@@ -5,9 +5,8 @@ import LayoutShell from "@/components/LayoutShell";
 import VisitLinksModal from "@/components/VisitLinksModal";
 import itineraryData from "@/data/itinerary.json";
 import type {ItineraryData, ItineraryDay, VisitLink} from "@/types/itinerary";
-import DetailButton from "@/components/DetailButton";
-
-
+import ItineraryItemsList from "@/components/ItineraryItemsList";
+import VoucherModal from "@/components/VoucherModal";
 import {mapRoute} from "@/data/routes/map"
 import dynamic from "next/dynamic";
 
@@ -38,7 +37,14 @@ const selectedRoute = mapRoute[selected?.day ?? "1"];
       () => itinerary.days.find((d) => d.day === (selected?.day ?? "1")),
       [selected]
   );
-
+const [voucherOpen, setVoucherOpen] = useState(false);
+    const [voucherTitle, setVoucherTitle] = useState("");
+    const [voucherFile, setVoucherFile] = useState("");
+    const openVoucher = (title: string, file: string) => {
+      setVoucherTitle(title);
+      setVoucherFile(file);
+      setVoucherOpen(true);
+    };
   const openLinks = (title: string | undefined, links: VisitLink[] | undefined) => {
     setModalTitle(title ?? "");
     setModalLinks(links ?? []);
@@ -79,129 +85,7 @@ const selectedRoute = mapRoute[selected?.day ?? "1"];
                     <b>{day.title}</b> · {day.date}({day.dow})
                   </div>
 
-                  {day.items.map((item, idx) => (
-                      <div className="item" key={idx}>
-                        <div>
-                          <div className="time">{item.time}</div>
-                          <div className="icon">{item.icon}</div>
-                          <div className="time">{item.amount}</div>
-                        </div>
-
-                        <div>
-                          <div className="ititle">{item.title}</div>
-                          <div className="detail">{item.detail}</div>
-
-                          {(item.transport || item.planB) && (
-                              <div className="metaBlock">
-                                {item.transport && (
-                                    <div className="small">
-                                      <b>이동</b> {item.transport}
-                                    </div>
-                                )}
-                                {item.planB && (
-                                    <div className="small">
-                                      <b>플랜B</b> {item.planB}
-                                    </div>
-                                )}
-                              </div>
-                          )}
-
-                          {item.visit && (
-                              <div className="visitCard">
-                                <div className="visitHead">
-                                  <span className="visitName">{item.visit.name}</span>
-                                  <span className="visitType">{item.visit.type}</span>
-                                </div>
-
-                                <div className="visitList">
-                                  {item.visit.location && (
-                                      <div className="small">
-                                        <b>위치</b> {item.visit.location}
-                                      </div>
-                                  )}
-                                  {item.visit.duration && (
-                                      <div className="small">
-                                        <b>체류</b> {item.visit.duration}
-                                      </div>
-                                  )}
-                                  {item.visit.note && (
-                                      <div className="small">
-                                        <b>메모</b> {item.visit.note}
-                                      </div>
-                                  )}
-                                  {item.visit.highlight && (
-                                      <div className="small">
-                                        <b>포인트</b> {item.visit.highlight}
-                                      </div>
-                                  )}
-                                  {item.visit.caution && (
-                                      <div className="small">
-                                        <b>주의</b> {item.visit.caution}
-                                      </div>
-                                  )}
-                                  {item.visit.orderTip && (
-                                      <div className="small">
-                                        <b>주문팁</b> {item.visit.orderTip}
-                                      </div>
-                                  )}
-                                </div>
-
-                                {item.visit.recommendedMenu?.length ? (
-                                    <div className="pillrow" style={{ marginTop: 8 }}>
-                                      {item.visit.recommendedMenu.map((menu, mi) => (
-                                          <span className="pill" key={mi}>
-                      {menu}
-                    </span>
-                                      ))}
-                                    </div>
-                                ) : null}
-
-                                {item.visit.links?.length ? (
-                                    <DetailButton onClick={() => openLinks(item.visit!.name, item.visit!.links!)}/>
-                                ) : null}
-                              </div>
-                          )}
-
-                          {item.subStops?.length ? (
-                              <div className="subStopsBox">
-                                <div className="small">
-                                  <b>포함 코스</b>
-                                </div>
-
-                                <div className="subStopsList">
-                                  {item.subStops.map((stop, si) => {
-                                    const hasLinks = !!stop.links?.length;
-
-                                    return hasLinks ? (
-                                        <button
-                                            key={si}
-                                            type="button"
-                                            className="subStopChip isButton"
-                                            onClick={() => openLinks(stop.name, stop.links!)}
-                                            title={stop.note || stop.name}
-                                        >
-                                          {stop.name}
-                                        </button>
-                                    ) : (
-                                        <span
-                                            key={si}
-                                            className="subStopChip"
-                                            title={stop.note || stop.name}
-                                        >
-                      {stop.name}
-                    </span>
-                                    );
-                                  })}
-                                </div>
-
-                                <div className="small" style={{ marginTop: 6 }}>
-                                  눌러지는 코스는 후기/지도/영상을 볼 수 있어요.
-                                </div>
-                              </div>
-                          ) : null}
-                        </div>
-                      </div>
-                  ))}
+                  <ItineraryItemsList day={day} onOpenLinks={openLinks} onOpenVoucher={openVoucher}/>
                 </div>
             )}
           </section>
@@ -218,7 +102,12 @@ const selectedRoute = mapRoute[selected?.day ?? "1"];
           </section>
           )}
         </div>
-
+<VoucherModal
+  open={voucherOpen}
+  title={voucherTitle}
+  file={voucherFile}
+  onClose={() => setVoucherOpen(false)}
+/>
         <VisitLinksModal
             open={open}
             title={modalTitle}

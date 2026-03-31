@@ -2,17 +2,16 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
+import {
+    convertAmount,
+    fetchExchangeRates,
+    formatCurrency,
+    getCachedExchangeRates,
+    prettyUpdatedAt,
+    type Currency,
+    type ExchangeRatesResponse,
+} from "@/lib/exchange";
 
-type Currency = "KRW" | "VND" | "USD";
-type RatesMap = Record<Currency, number>;
-type Row = Record<string,string>
-interface ExchangeRatesState {
-    rates: RatesMap;
-    updatedAt: string;
-    source: "live" | "cache";
-}
-
-const STORAGE_KEY = "exchange_rates_v1";
 const CURRENCIES: Currency[] = ["KRW", "VND", "USD"];
 
 function CalculatorIcon() {
@@ -86,86 +85,6 @@ function RefreshIcon({ spinning = false }: { spinning?: boolean }) {
     );
 }
 
-async function fetchExchangeRates(): Promise<ExchangeRatesState> {
-    const res = await fetch(
-        "https://api.frankfurter.dev/v2/rates?base=USD&quotes=KRW,VND",
-        { cache: "no-store" }
-    );
-
-    if (!res.ok) {
-        throw new Error("환율 조회 실패");
-    }
-    const rows = await res.json();
-    const krwRow = rows.find((row: Row) => row.quote === "KRW");
-    const vndRow = rows.find((row: Row) => row.quote === "VND");
-
-    const rates: RatesMap = {
-        USD: 1,
-        KRW: Number(krwRow?.rate),
-        VND: Number(vndRow?.rate),
-    };
-
-    if (!rates.KRW || !rates.VND) {
-        throw new Error("환율 데이터 누락");
-    }
-
-    const payload: ExchangeRatesState = {
-        rates,
-        updatedAt: rows[0]?.date ?? new Date().toISOString(),
-        source: "live",
-    };
-
-    if (typeof window !== "undefined") {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
-    }
-
-    return payload;
-}
-
-function getCachedRates(): ExchangeRatesState | null {
-    if (typeof window === "undefined") return null;
-
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
-
-    try {
-        const parsed = JSON.parse(raw) as ExchangeRatesState;
-        return {
-            ...parsed,
-            source: "cache",
-        };
-    } catch {
-        return null;
-    }
-}
-
-function convertAmount(
-    amount: number,
-    from: Currency,
-    to: Currency,
-    rates: RatesMap
-) {
-    if (!Number.isFinite(amount)) return 0;
-    if (from === to) return amount;
-
-    const usdAmount = amount / rates[from];
-    return usdAmount * rates[to];
-}
-
-function formatValue(value: number, currency: Currency) {
-    if (!Number.isFinite(value)) return "-";
-
-    return new Intl.NumberFormat("ko-KR", {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: currency === "USD" ? 2 : 0,
-    }).format(value);
-}
-
-function prettyUpdatedAt(value: string) {
-    if (!value) return "-";
-    return value.length >= 10 ? value.slice(0, 10) : value;
-}
-
 interface Props {
     title?: string;
 }
@@ -174,7 +93,7 @@ export default function ExchangeRateSheet({ title = "환율 계산기" }: Props)
     const [open, setOpen] = useState(false);
     const [amount, setAmount] = useState("100000");
     const [from, setFrom] = useState<Currency>("KRW");
-    const [data, setData] = useState<ExchangeRatesState | null>(null);
+    const [data, setData] = useState<ExchangeRatesResponse | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [mounted, setMounted] = useState(false);
@@ -192,7 +111,7 @@ export default function ExchangeRateSheet({ title = "환율 계산기" }: Props)
             const live = await fetchExchangeRates();
             setData(live);
         } catch {
-            const cached = getCachedRates();
+            const cached = getCachedExchangeRates();
             if (cached) {
                 setData(cached);
                 setError("실시간 조회에 실패해 저장된 환율을 사용 중이에요.");
@@ -323,7 +242,7 @@ export default function ExchangeRateSheet({ title = "환율 계산기" }: Props)
                                     <div className="exchangeResultCard" key={item.currency}>
                                         <div className="exchangeResultCode">{item.currency}</div>
                                         <div className="exchangeResultValue">
-                                            {formatValue(item.value, item.currency)}
+                                            {formatCurrency(item.value, item.currency)}
                                             <span className="exchangeResultUnit"> {item.currency}</span>
                                         </div>
                                     </div>

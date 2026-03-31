@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# withddoing
 
-## Getting Started
+푸꾸옥 가족여행 일정, 체크리스트, 경로 지도, 환율 계산을 한 화면에서 볼 수 있게 만든 `Next.js` 기반 PWA입니다.
 
-First, run the development server:
+## 주요 기능
+
+- 일자별 여행 일정 확인
+- 전체 일정 한 번에 보기
+- 방문지 후기/지도/이미지/PDF 모달 보기
+- GeoJSON 기반 일차별 이동 경로 지도
+- 체크리스트 로컬 저장
+- KRW / VND / USD 환율 계산
+- PWA 설치 지원
+
+## 기술 스택
+
+- Next.js 16
+- React 19
+- TypeScript
+- react-leaflet / leaflet
+- next-pwa
+
+## 실행 방법
+
+```bash
+npm install
+npm run dev
+```
+
+브라우저에서 `http://localhost:3000` 을 열면 됩니다.
+
+## 스크립트
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
+npm run start
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 프로젝트 구조
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+app/                페이지
+components/         공용 UI 컴포넌트
+data/               여행 일정, 체크리스트, 운영 룰, 지도 JSON
+lib/                환율/지도 유틸
+public/             PWA 자산, 이미지, 서비스워커
+types/              공용 타입 정의
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 데이터 관리
 
-## Learn More
+- 일정 데이터는 `data/itinerary.json` 에서 관리합니다.
+- 체크리스트는 `data/checklist.json` 에서 관리합니다.
+- 운영 룰은 `data/rules.json` 에서 관리합니다.
+- 지도 경로는 `data/routes/day*.json` 에서 관리합니다.
 
-To learn more about Next.js, take a look at the following resources:
+JSON만 수정해도 화면 내용이 바로 바뀌도록 구성되어 있습니다.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 구현 메모
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- 일정 카드 렌더링은 공용 컴포넌트로 분리되어 메인 화면과 전체 일정 화면이 같은 UI를 공유합니다.
+- 환율 계산 로직은 `lib/exchange.ts` 에 모아두고 UI 컴포넌트에서 재사용합니다.
+- 체크리스트와 환율 캐시는 `localStorage` 를 사용합니다.
 
-## Deploy on Vercel
+## 배포 메모
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `next-pwa` 를 사용해 `manifest.json` 과 서비스워커 기반 설치형 웹앱으로 동작합니다.
+- 개발 모드에서는 PWA가 비활성화되고, 프로덕션 빌드에서 활성화됩니다.

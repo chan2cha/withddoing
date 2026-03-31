@@ -41,13 +41,17 @@ export interface SubStop {
     note?: string;
     links?: VisitLink[];
 }
-
+export interface VoucherInfo {
+    label: string;
+    file:string;
+}
 export interface ItineraryItem {
     time: string;
     icon: string;
     amount: string;
     title: string;
     detail: string;
+    voucher:VoucherInfo
     transport?: string;
     planB?: string;
     visit?: VisitInfo;
