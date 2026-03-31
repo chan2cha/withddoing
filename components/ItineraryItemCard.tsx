@@ -1,15 +1,12 @@
 import DetailButton from "@/components/DetailButton";
 import type { ItineraryItem, VisitLink } from "@/types/itinerary";
 
-
 interface Props {
     item: ItineraryItem;
     onOpenLinks: (title?: string, links?: VisitLink[]) => void;
-    onOpenVoucher: (label: string,file: string) => void;
 }
 
-export default function ItineraryItemCard({ item, onOpenLinks, onOpenVoucher }: Props) {
-    
+export default function ItineraryItemCard({ item, onOpenLinks }: Props) {
     return (
         <div className="item">
             <div>
@@ -94,17 +91,17 @@ export default function ItineraryItemCard({ item, onOpenLinks, onOpenVoucher }: 
                         ) : null}
                     </div>
                 ) : null}
-{item.voucher ? (
-  <div className="actionRow">
-    <button
-      type="button"
-      className="btn"
-      onClick={() => onOpenVoucher(item.voucher!.label || item.title, item.voucher!.file)}
-    >
-      바우처 보기 📄
-    </button>
-  </div>
-) : null}
+                {item.voucher ? (
+                    <div className="actionRow">
+                        <a
+                            href={item.voucher.file}
+                            className="btn"
+                            aria-label={`${item.voucher.label || item.title} PDF 열기`}
+                        >
+                            바우처 보기 📄
+                        </a>
+                    </div>
+                ) : null}
                 {item.subStops?.length ? (
                     <div className="subStopsBox">
                         <div className="small">

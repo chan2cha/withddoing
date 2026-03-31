@@ -6,7 +6,6 @@ import VisitLinksModal from "@/components/VisitLinksModal";
 import itineraryData from "@/data/itinerary.json";
 import type {ItineraryData, ItineraryDay, VisitLink} from "@/types/itinerary";
 import ItineraryItemsList from "@/components/ItineraryItemsList";
-import VoucherModal from "@/components/VoucherModal";
 import {mapRoute} from "@/data/routes/map"
 import dynamic from "next/dynamic";
 
@@ -37,14 +36,6 @@ const selectedRoute = mapRoute[selected?.day ?? "1"];
       () => itinerary.days.find((d) => d.day === (selected?.day ?? "1")),
       [selected]
   );
-const [voucherOpen, setVoucherOpen] = useState(false);
-    const [voucherTitle, setVoucherTitle] = useState("");
-    const [voucherFile, setVoucherFile] = useState("");
-    const openVoucher = (title: string, file: string) => {
-      setVoucherTitle(title);
-      setVoucherFile(file);
-      setVoucherOpen(true);
-    };
   const openLinks = (title: string | undefined, links: VisitLink[] | undefined) => {
     setModalTitle(title ?? "");
     setModalLinks(links ?? []);
@@ -85,7 +76,7 @@ const [voucherOpen, setVoucherOpen] = useState(false);
                     <b>{day.title}</b> · {day.date}({day.dow})
                   </div>
 
-                  <ItineraryItemsList day={day} onOpenLinks={openLinks} onOpenVoucher={openVoucher}/>
+                  <ItineraryItemsList day={day} onOpenLinks={openLinks} />
                 </div>
             )}
           </section>
@@ -102,12 +93,6 @@ const [voucherOpen, setVoucherOpen] = useState(false);
           </section>
           )}
         </div>
-<VoucherModal
-  open={voucherOpen}
-  title={voucherTitle}
-  file={voucherFile}
-  onClose={() => setVoucherOpen(false)}
-/>
         <VisitLinksModal
             open={open}
             title={modalTitle}

@@ -6,7 +6,6 @@ import ItineraryItemsList from "@/components/ItineraryItemsList";
 import VisitLinksModal from "@/components/VisitLinksModal";
 import itineraryData from "@/data/itinerary.json";
 import type { ItineraryData, VisitLink } from "@/types/itinerary";
-import VoucherModal from "@/components/VoucherModal";
 const itinerary = itineraryData as ItineraryData;
 
 export default function SchedulePage() {
@@ -18,14 +17,6 @@ export default function SchedulePage() {
         setModalTitle(title ?? "");
         setModalLinks(links ?? []);
         setOpen(true);
-    };
-const [voucherOpen, setVoucherOpen] = useState(false);
-    const [voucherTitle, setVoucherTitle] = useState("");
-    const [voucherFile, setVoucherFile] = useState("");
-    const openVoucher = (title: string, file: string) => {
-      setVoucherTitle(title);
-      setVoucherFile(file);
-      setVoucherOpen(true);
     };
     return (
         <LayoutShell>
@@ -44,18 +35,12 @@ const [voucherOpen, setVoucherOpen] = useState(false);
                             </div>
 
                             <div style={{ marginTop: 8 }}>
-                                <ItineraryItemsList day={day} onOpenLinks={openLinks} onOpenVoucher={openVoucher} />
+                                <ItineraryItemsList day={day} onOpenLinks={openLinks} />
                             </div>
                         </div>
                     ))}
                 </div>
             </section>
-<VoucherModal
-  open={voucherOpen}
-  title={voucherTitle}
-  file={voucherFile}
-  onClose={() => setVoucherOpen(false)}
-/>
             <VisitLinksModal
                 open={open}
                 title={modalTitle}
